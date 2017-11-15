@@ -1,4 +1,4 @@
-package Link;
+package testold;
 
 public class TestMergeTwoLink {
 	

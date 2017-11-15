@@ -1,10 +1,10 @@
-package Link;
+package testold;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class TestLinkCycle {
+public class TestLinkCycle2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -31,17 +31,37 @@ public class TestLinkCycle {
 		g.next=c;
 		
 		Link head = a;
-		Set set= new HashSet();
-		while(head !=null) {
-			System.out.println(head.value);
-			set.add(head);
-			head = head.next;
-			if(set.contains(head)) {
-				System.out.println("head:"+head.value);
-				 break;
+		
+		Link slow = a;
+		
+		Link fast = a;
+		
+		Link meet = null;
+		
+		while(slow !=null) {
+			slow = slow.next;
+			fast = fast.next;
+			if(fast.next==null) {
+				break;
+			}
+			fast = fast.next;
+			
+			if(slow == fast) {
+				meet=slow;
+				break;
+			}
+		}
+		
+		while(head!=null && meet!=null) {
+			head=head.next;
+			meet=meet.next;
+			if(head == meet) {
+				System.out.println(head.value);
+				break;
 			}
 			
 		}
+		
 		
 	}
 	

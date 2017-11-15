@@ -1,7 +1,8 @@
 package Link;
 
-public class TestLinkSort {
+public class TestLinkReversed2 {
 
+	//实现链表逆序
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Link a = new Link();
@@ -20,12 +21,26 @@ public class TestLinkSort {
 		e.value=5;
 		e.next=null;
 		
-		Link head = a;
+		Link head = linkReversed(a);
 		while(head !=null) {
 			System.out.println(head.value);
 			head = head.next;
 		}
 		
+	}
+	
+	public static Link linkReversed(Link head) {
+		Link newHead = null;
+		Link temp = null;
+		
+		while(head != null) {
+			temp = head.next;
+			head.next = newHead;
+			newHead = head;
+			head = temp;
+		}
+		
+		return newHead;
 	}
 	
 	static class Link{
