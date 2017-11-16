@@ -25,6 +25,7 @@ public class TestLinkReversed {
 		int m=2,n=4;
 		
 		Link head = linkReversed(a,m,n);
+		 head =a;
 		while(head !=null) {
 			System.out.println(head.value);
 			head = head.next;
@@ -33,38 +34,48 @@ public class TestLinkReversed {
 	}
 	
 	public static Link linkReversed(Link head,int m, int n) {
+		// 1 2 3 4 5
 		
-		int from = m;
+		Link temphead=null;
+		Link temptail=null;
 		
-		int to = n;
-		
-		if (m>n) {
-			from = n;
-			to = m;
-		}
-		
-		Link newHead = null;
 		Link temp = null;
-		Link mPre = null;
+		Link tempNext = null;
+		Link tempM = null;
+		Link tempN = null;
+		
 		int i = 1;
 		while(head != null) {
-			
-			if(i>to) {
-				head = head.next;
+			if(i==m-1) {
+				temphead = head;
+			}
+			if(i==m) {
+				tempM = head;
 			}
 			
-			if(i<from) {
-				newHead = head;
+			if(i==n) {
+				tempN = head;
+				temptail = head.next;
+				temphead.next=tempN;
+				tempM.next=temptail;
+			}
+			if(i>n) {
 				head = head.next;
 			}else {
-				temp = head.next;
-				head.next=newHead;
-				newHead = head;
-				head = temp;
+				if(i>=m) {
+					tempNext = head.next;
+					head.next = temp;
+					temp = head;
+					head = tempNext;
+				}else {
+					head = head.next;
+				}
 			}
-
+			
 			i++;
 		}
+		
+		
 		
 		return head;
 	}
